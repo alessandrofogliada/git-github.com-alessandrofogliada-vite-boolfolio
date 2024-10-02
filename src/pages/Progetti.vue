@@ -1,25 +1,29 @@
 <script>
-import { store } from '@/store/store';
+import { store } from '../store/store';
 import axios from 'axios';
 
 export default {
-    data(){
-        return{
-            progetti = []
+        data(){
+            return{
+                progetti : [],
+            }
+        },
+
+        methods: {
+            getApi(){
+                axios.get(store.apiUrl + 'progetti').then(response=>{
+                    this.progetti = response.data.result
+                    console.log(this.progetti);
+                    
+                })
+            }
+        },
+
+        mounted() {
+            this.getApi()
         }
-    }
-};
-
-methods: {
-    getApi(){
-        axios.get(store.apiUrl+'progetti')
-        .then(Response=>{ this.progetto = Response.data.posts})
-    }
 }
 
-mounted() {
-    this.apiUrl()
-}
 
 
 
@@ -27,7 +31,14 @@ mounted() {
 
 <template>
 
-<h1>Questa è la pagina dei Progetti</h1>
+<div class="container">
+    <div class="menu">
+        <h1>Questa è la pagina dei Progetti</h1>    
+        <ul>
+            <li v-for="progetto in progetti" :key="progetto.id"> {{ progetto.title }}</li>
+        </ul>
+    </div>
+</div>
 
 </template>
 

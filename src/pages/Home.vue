@@ -4,10 +4,14 @@
 
 <template>
 
-<h1>Questa è la Home</h1>
+<div class="container">
+    <div class="menu">
+        <h1>Questa è la Home</h1>
+    </div>
+</div>
 
 </template>
 
-<style>
+<style lang="scss">
 
 </style>
